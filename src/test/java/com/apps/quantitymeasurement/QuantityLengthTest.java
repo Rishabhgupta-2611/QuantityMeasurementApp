@@ -3,7 +3,7 @@ package com.apps.quantitymeasurement;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class QuantityLengthTest {
+class QuantityLengthTest {
 
 	@Test
 	void testEquality_FeetToFeet_SameValue() {
@@ -49,5 +49,20 @@ public class QuantityLengthTest {
 	@Test
 	void testNullUnitThrowsException() {
 		assertThrows(IllegalArgumentException.class, () -> new QuantityLength(1.0, null));
+	}
+
+	@Test
+	void testEquality_FeetToYard() {
+		assertEquals(new QuantityLength(3.0, LengthUnit.FEET), new QuantityLength(1.0, LengthUnit.YARD));
+	}
+
+	@Test
+	void testEquality_InchToCentimeter() {
+		assertEquals(new QuantityLength(12.0, LengthUnit.INCH), new QuantityLength(30.48, LengthUnit.CENTIMETER));
+	}
+
+	@Test
+	void testEquality_YardToInch() {
+		assertEquals(new QuantityLength(1.0, LengthUnit.YARD), new QuantityLength(36.0, LengthUnit.INCH));
 	}
 }

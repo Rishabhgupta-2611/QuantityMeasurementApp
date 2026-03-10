@@ -13,5 +13,3 @@ dependency-reduced-pom.xml
 .settings/
 bin/
 
-.gitignore
-README.md

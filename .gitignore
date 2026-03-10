@@ -12,3 +12,6 @@ dependency-reduced-pom.xml
 .project
 .settings/
 bin/
+
+.gitignore
+README.md

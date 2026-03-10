@@ -39,6 +39,24 @@ public class QuantityMeasurementApp {
 		return result;
 	}
 
+	public static <U extends IMeasurable> Quantity<U> demonstrateSubtraction(Quantity<U> q1, Quantity<U> q2) {
+
+		Quantity<U> result = q1.subtract(q2);
+
+		System.out.println(q1 + " - " + q2 + " = " + result);
+
+		return result;
+	}
+
+	public static <U extends IMeasurable> double demonstrateDivision(Quantity<U> q1, Quantity<U> q2) {
+
+		double result = q1.divide(q2);
+
+		System.out.println(q1 + " / " + q2 + " = " + result);
+
+		return result;
+	}
+
 	public static void main(String[] args) {
 
 		Quantity<LengthUnit> l1 = new Quantity<>(1, LengthUnit.FEET);
@@ -78,5 +96,13 @@ public class QuantityMeasurementApp {
 		demonstrateAddition(v1, v2);
 
 		demonstrateAddition(v1, v3, VolumeUnit.MILLILITRE);
+
+		Quantity<VolumeUnit> v5 = new Quantity<>(5, VolumeUnit.LITRE);
+
+		Quantity<VolumeUnit> v6 = new Quantity<>(2, VolumeUnit.LITRE);
+
+		demonstrateSubtraction(v5, v6);
+
+		demonstrateDivision(v5, v6);
 	}
 }

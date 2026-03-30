@@ -1,42 +1,54 @@
 package com.apps.quantitymeasurement.controller;
 
-import com.apps.quantitymeasurement.entity.QuantityMeasurementEntity;
-import com.apps.quantitymeasurement.service.QuantityMeasurementServiceImpl;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import com.apps.quantitymeasurement.service.*;
+import com.apps.quantitymeasurement.dto.*;
+import com.apps.quantitymeasurement.entity.*;
+
 
 @RestController
-@RequestMapping("/api/measurements")
+@RequestMapping("/api/v1/quantities")
 public class QuantityMeasurementController {
 
-	private final QuantityMeasurementServiceImpl service;
+    @Autowired
+    private IQuantityMeasurementService service;
 
-	@Autowired
-	public QuantityMeasurementController(QuantityMeasurementServiceImpl service) {
-		this.service = service;
-	}
+    @PostMapping("/compare")
+    public QuantityMeasurementEntity compare(@RequestBody QuantityInputDTO input) {
+        return service.compare(input);
+    }
 
-	@PostMapping
-	public QuantityMeasurementEntity save(@RequestBody QuantityMeasurementEntity entity) {
-		return service.save(entity);
+    @PostMapping("/convert")
+    public QuantityMeasurementEntity convert(@RequestBody QuantityInputDTO input) {
+        return service.convert(input);
+    }
 
-	}
+    @PostMapping("/add")
+    public QuantityMeasurementEntity add(@RequestBody QuantityInputDTO input) {
+        return service.add(input);
+    }
+    
+    @PostMapping("/subtract")
+    public QuantityMeasurementEntity subtract(@RequestBody QuantityInputDTO input) {
+        return service.subtract(input);
+    }
 
-	@GetMapping
-	public List<QuantityMeasurementEntity> getAll() {
-		return service.findAll();
-	}
+    @PostMapping("/divide")
+    public QuantityMeasurementEntity divide(@RequestBody QuantityInputDTO input) {
+        return service.divide(input);
+    }
 
-	@DeleteMapping
-	public String deleteAll() {
-		service.deleteAllMeasurements();
-		return "All the measurements Deleted";
-	}
+    @GetMapping("/history/operation/{operation}")
+    public List<QuantityMeasurementEntity> getHistory(@PathVariable String operation) {
+        return service.getHistoryByOperation(operation);
+    }
 
-	@DeleteMapping("/{id}")
-	public String deleteById(@PathVariable Long id) {
-		return service.deleteById(id);
-	}
+    @GetMapping("/count/{operation}")
+    public long getCount(@PathVariable String operation) {
+        return service.getOperationCount(operation);
+    }
 }

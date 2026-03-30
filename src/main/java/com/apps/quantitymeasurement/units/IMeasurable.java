@@ -2,13 +2,13 @@ package com.apps.quantitymeasurement.units;
 
 public interface IMeasurable {
 
-	double convertToBaseUnit(double value);
+    double convertToBaseUnit(double value);
 
-	double convertFromBaseUnit(double value);
+    double convertFromBaseUnit(double value);
 
-	String getUnitName();
+    String getUnitName();
 
-	double getConversionFactor();
+    double getConversionFactor();
 
-	boolean supportsArithmetic();
+    boolean supportsArithmetic();
 }

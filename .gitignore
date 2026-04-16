@@ -10,5 +10,6 @@ dependency-reduced-pom.xml
 .metadata/
 .classpath
 .project
+.env.txt
 .settings/
 bin/
